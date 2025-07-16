@@ -17,13 +17,7 @@ export async function forwardError(c: Context, error: unknown) {
 
   if (error instanceof HTTPError) {
     const errorText = await error.response.text()
-    let errorJson: unknown
-    try {
-      errorJson = JSON.parse(errorText)
-    } catch {
-      errorJson = errorText
-    }
-    consola.error("HTTP error:", errorJson)
+    consola.error("HTTP error:", { status: error.response.status, message: errorText })
     return c.json(
       {
         error: {
