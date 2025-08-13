@@ -123,7 +123,6 @@ function handleUserMessage(message: AnthropicUserMessage): Array<Message> {
         })
       }
     }
-    }
   } else {
     msgs.push({
       role: "user",
